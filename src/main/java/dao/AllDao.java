@@ -8,14 +8,16 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AllDao {
-
-    public void setUserinfoDao(UserinfoDao userinfoDao) {
-        this.userinfoDao = userinfoDao;
-    }
-
-    @Autowired
-    private UserinfoDao userinfoDao;
+    @Autowired private UserinfoDao userinfoDao;
+    @Autowired UserDao userDao;
+    @Autowired PermissionDao permissionDao;
     public UserinfoDao getUserinfoDao(){
         return userinfoDao;
+    }
+    public UserDao getUserDao(){
+        return userDao;
+    }
+    public PermissionDao getPermissionDao() {
+        return permissionDao;
     }
 }

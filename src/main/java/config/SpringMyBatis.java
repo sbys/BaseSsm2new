@@ -51,7 +51,7 @@ public class SpringMyBatis {
     {
         SqlSessionFactoryBean ret = new SqlSessionFactoryBean();
         ret.setDataSource(dataSource);
-        ret.setMapperLocations(new Resource[]{new ClassPathResource("mapper/UserinfoMapper.xml")});
+        ret.setMapperLocations(new Resource[]{new ClassPathResource("mapper/UserinfoMapper.xml"),new ClassPathResource("mapper/UserMapper.xml"),new ClassPathResource("mapper/UserpermissionMapper.xml")});
         return ret;
     }
 

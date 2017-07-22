@@ -39,5 +39,4 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
     }
-
 }

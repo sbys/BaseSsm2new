@@ -11,10 +11,11 @@
         <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/BaseSsm2-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="BaseSsm2_main/web/Web Gradle : BaseSsm2-1.0-SNAPSHOT.war" />
+      <element id="javaee-facet-resources" facet="BaseSsm2_main/web/Web Gradle : BaseSsm2-1.0-SNAPSHOT.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="BaseSsm2_main" />
-          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/out/production/resources" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.9.RELEASE" />
@@ -24,6 +25,8 @@
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:4.2.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:4.2.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis:3.4.3" />
+          <element id="library" level="project" name="Gradle: commons-fileupload:commons-fileupload:1.2.1" />
+          <element id="library" level="project" name="Gradle: commons-io:commons-io:1.3.2" />
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis-spring:1.3.1" />
           <element id="library" level="project" name="Gradle: org.postgresql:postgresql:9.4.1212" />
           <element id="library" level="project" name="Gradle: commons-dbcp:commons-dbcp:1.4" />
