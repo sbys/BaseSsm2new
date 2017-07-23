@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.UserpermissionMapper" >
+  <resultMap id="BaseResultMap" type="viewmodel.Userpermission" >
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="Permission" property="permission" jdbcType="VARCHAR"></result>
+  </resultMap>
+  <insert id="insert" parameterType="viewmodel.Userpermission" >
+    insert into UserPermission (UserName,Permission)
+    values (#{username,jdbcType=VARCHAR},#{permission,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="viewmodel.Userpermission" >
+    insert into UserPermission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        UserName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

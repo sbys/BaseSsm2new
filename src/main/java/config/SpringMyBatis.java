@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * Created by 12917 on 2017/7/11.
  */
 @Configuration
-@ComponentScan(basePackages = {"model","dao","service"})
+@ComponentScan(basePackages = {"viewmodel","dao","service"})
 
 public class SpringMyBatis {
     @Bean
@@ -51,7 +51,12 @@ public class SpringMyBatis {
     {
         SqlSessionFactoryBean ret = new SqlSessionFactoryBean();
         ret.setDataSource(dataSource);
-        ret.setMapperLocations(new Resource[]{new ClassPathResource("mapper/UserinfoMapper.xml"),new ClassPathResource("mapper/UserMapper.xml"),new ClassPathResource("mapper/UserpermissionMapper.xml")});
+        ret.setMapperLocations(new Resource[]{
+                                                new ClassPathResource("mapper/UserMapper.xml"),
+                                                new ClassPathResource("mapper/UserpermissionMapper.xml"),
+                                                new ClassPathResource("mapper/UserDataMapper.xml"),
+                                                new ClassPathResource("mapper/PhoneMapper.xml"),
+                                                new ClassPathResource("mapper/QrMapper.xml")});
         return ret;
     }
 
@@ -59,7 +64,7 @@ public class SpringMyBatis {
     public MapperScannerConfigurer mapperScannerConfigurer()
     {
         MapperScannerConfigurer ret = new MapperScannerConfigurer();
-        ret.setBasePackage("model");
+        ret.setBasePackage("mapper");
         ret.setSqlSessionFactoryBeanName("sqlSessionFactory");
         return ret;
     }

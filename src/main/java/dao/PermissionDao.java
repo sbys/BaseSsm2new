@@ -1,7 +1,7 @@
 package dao;
 
-import model.Userpermission;
-import model.UserpermissionMapper;
+import viewmodel.Userpermission;
+import mapper.UserpermissionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class PermissionDao {
-    @Autowired
+    @Autowired(required = false)
     private UserpermissionMapper userpermissionMapper;
     public void insert(Userpermission userpermission){
         userpermissionMapper.insert(userpermission);

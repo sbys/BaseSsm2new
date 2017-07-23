@@ -12,9 +12,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
 /**
@@ -26,20 +23,6 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
-//    @Bean(destroyMethod = "close")
-//    public DataSource BasicDataSource(
-//            @Value("${jdbc.driver}") String driver,
-//            @Value("${jdbc.url}") String url,
-//            @Value("${jdbc.username}") String username,
-//            @Value("${jdbc.password}") String password)
-//    {
-//        BasicDataSource ret = new BasicDataSource();
-//        ret.setDriverClassName(driver);
-//        ret.setUrl(url);
-//        ret.setUsername(username);
-//        ret.setPassword(password);
-//        return ret;
-//    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()
@@ -67,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
            .authorizeRequests()
-                .antMatchers("/public/**","/register","/jsp/**","/").permitAll()
+                .antMatchers("/public/**","/register","/jsp/**","/","/getcode","/reg").permitAll()
                 .antMatchers("/secure/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()

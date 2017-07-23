@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.UserDataMapper" >
+    <resultMap id="BaseResultMap" type="viewmodel.UserData" >
+        <result column="UserName" property="username" jdbcType="VARCHAR" />
+        <result column="Integral" property="integral" jdbcType="INTEGER"></result>
+        <result column="Gift" property="gift" jdbcType="INTEGER"></result>
+        <result column="Gifted" property="gifted" jdbcType="INTEGER"></result>
+
+    </resultMap>
+    <insert id="insert" parameterType="viewmodel.UserData" >
+        insert into UserData (UserName,Integral,Gift,Gifted)
+        values (#{username,jdbcType=VARCHAR},#{integral,jdbcType=INTEGER},#{gift,jdbcType=INTEGER},#{gifted,jdbcType=INTEGER})
+    </insert>
+    <select id="select" parameterType="String" resultType="viewmodel.UserData">
+        select * from UserData WHERE UserName=#{username,jdbcType=VARCHAR}
+    </select>
+    <update id="update" parameterType="viewmodel.UserData">
+        UPDATE UserData SET Integral=#{integral,jdbcType=INTEGER},
+                    Gift=#{gift,jdbcType=INTEGER},
+                    Gifted = #{gifted,jdbcType=INTEGER}
+                    WHERE UserName = #{username,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -9,9 +9,6 @@ import service.AllService;
  */
 @Controller
 public class BaseAction {
-    public void setAllService(AllService allService) {
-        this.allService = allService;
-    }
 
     @Autowired
     private AllService allService;

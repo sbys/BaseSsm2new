@@ -11,6 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="../reg" method="get">
+    账户<input type="text" name="username"><br>
+    密码<input type="password" name="password"><<br>
+    名字<input type="text" name="name"><<br>
+    验证码<input type="text" name="code"><<br>
+    <input type="submit">
+</form>
 </body>
 </html>

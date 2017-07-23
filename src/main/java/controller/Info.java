@@ -1,30 +1,17 @@
 package controller;
-import org.apache.commons.io.FileUtils;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import viewmodel.Response;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by 12917 on 2017/6/11.
  */
 @Controller
 @Transactional
+@RequestMapping(value = "/app")
 public class Info extends BaseAction{
-    /*设置根页面*/
-    @RequestMapping(value = "/")
-    public String index(){
-        return "/jsp/index";
-    }
     /*路由到登陆页面*/
     @RequestMapping(value = "/login")
     public String login(){
@@ -49,38 +36,39 @@ public class Info extends BaseAction{
         else
             return "failed";
     }
-
-    /*写一个账号密码管理界面，有添加，删除方法*/
-
-
-
-    @RequestMapping(value="show",method = RequestMethod.GET)
-    public String can(@RequestParam ("a") String a,@RequestParam(value = "b",required = false,defaultValue = "sss") String b){
-        System.out.print(a+b);
-        return "/index";
+    /*带验证码的注册页面*/
+    @RequestMapping(value = "/reg",method = RequestMethod.GET)
+    @ResponseBody
+    public Response register2(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("name") String name,@RequestParam("code") String code ){
+        Response response=new Response();
+        int result=getAllService().getInfoService().inserUser1(username,password,name,code);
+        if(result==1)
+            response.setResult("success");
+        else
+            response.setResult("failed");
+        return response;
     }
-    @RequestMapping(value = "in",consumes = {"text/json","application/json"},produces = {"text/json","application/json"})
-    public String song(){
-        return "/index.jsp";
-    }
-    @RequestMapping(value = "file/upload",method = RequestMethod.POST)
-    public String upload(@RequestParam(value = "username",required = false,defaultValue = "sss") String username, @RequestPart("upload") MultipartFile multipartFile,HttpSession httpSession)throws IOException{
-        String filename=multipartFile.getOriginalFilename();
-        String leftPath="E:\\webr\\images";
-        File file=new File(leftPath,filename);
-        multipartFile.transferTo(file);
 
-        return "/result";
+    /*积分增加*/
+    @RequestMapping(value = "add")
+    @ResponseBody
+    public String add(@RequestParam("username")String name){
+        this.getAllService().getInfoService().add(name);
+        return "success";
     }
-    @RequestMapping(value = "file/down",method = RequestMethod.GET)
-    public ResponseEntity<byte[]> down(@RequestParam("username") String user) throws UnsupportedEncodingException,IOException{
-        File file=new File("E:\\webr\\images\\aaa.jpg");
-        HttpHeaders headers=new HttpHeaders();
-        String filename=new String("aaa.jpg".getBytes("utf-8"),"iso-8859-1");
-        headers.setContentDispositionFormData("attachment",filename);
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.OK);
+    /*请求验证码*/
+    @RequestMapping(value = "getcode")
+    @ResponseBody
+    public Response code(@RequestParam("number") String number){
+        int result=this.getAllService().getInfoService().putcode(number);
+        Response response=new Response();
+        if(result==1)
+            response.setResult("发送成功");
+        else
+            response.setResult("失败");
+        return  response;
     }
+
 
 
 }

@@ -10,18 +10,14 @@ import org.springframework.web.servlet.DispatcherServlet;
 @Service
 public class AllService {
     @Autowired
-    private UserinfoService userinfoService;
-    @Autowired
-    private UserService userService;
-    @Autowired
     private InfoService infoService;
-    public UserinfoService getUserinfoService(){
-        return userinfoService;
-    }
-    public UserService getUserService() {
-        return userService;
-    }
+    @Autowired
+    private SaverService saverService;
     public InfoService getInfoService() {
         return infoService;
+    }
+
+    public SaverService getSaverService() {
+        return saverService;
     }
 }

@@ -1,4 +1,4 @@
-package model;
+package viewmodel;
 
 public class Userinfo {
     private Integer uid;

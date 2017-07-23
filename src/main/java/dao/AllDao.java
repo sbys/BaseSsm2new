@@ -9,8 +9,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AllDao {
     @Autowired private UserinfoDao userinfoDao;
-    @Autowired UserDao userDao;
-    @Autowired PermissionDao permissionDao;
+    @Autowired private UserDao userDao;
+    @Autowired private PermissionDao permissionDao;
+    @Autowired private UserDataDao  userDataDao;
+    @Autowired private QRDao qrDao;
+    @Autowired private PhoneDao phoneDao;
+
+
+    public UserDataDao getUserDataDao() {
+        return userDataDao;
+    }
     public UserinfoDao getUserinfoDao(){
         return userinfoDao;
     }
@@ -19,5 +27,11 @@ public class AllDao {
     }
     public PermissionDao getPermissionDao() {
         return permissionDao;
+    }
+    public QRDao getQrDao() {
+        return qrDao;
+    }
+    public PhoneDao getPhoneDao() {
+        return phoneDao;
     }
 }
